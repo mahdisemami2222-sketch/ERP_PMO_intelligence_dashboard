@@ -1,0 +1,24 @@
+Action Health = 
+VAR Overdue =
+    CALCULATE(
+        AVERAGE(Weekly_Project_State[Overdue_Actions]),
+        FILTER(Weekly_Project_State,Weekly_Project_State[Week] = [Latest_Week])
+    )
+RETURN
+MAX(
+    0,
+    100 - (Overdue * 5)
+)
+---------------------------------------------------------------------------------------------------------
+Decision Health = 
+VAR Pending =
+    CALCULATE(
+        AVERAGE(Weekly_Project_State[Pending_Decisions]),
+        FILTER(Weekly_Project_State,Weekly_Project_State[Week] = [Latest_Week])
+    )
+RETURN
+MAX(
+    0,
+    100 - (Pending * 10)
+)
+--------------------------------------------------------------------------------------------------------
